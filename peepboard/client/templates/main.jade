@@ -1,0 +1,11 @@
+html
+  head
+    block head
+      link(rel='stylesheet' href='/static/css')
+  body
+    block body
+      include ./loading.jade
+      
+    block scripts
+      script(src="/static/components/handlebars/handlebars.min.js")
+      script(data-main='static/js/app' src="/static/components/requirejs/require.js")

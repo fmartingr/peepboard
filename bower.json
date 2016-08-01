@@ -1,0 +1,22 @@
+{
+  "name": "peepboard",
+  "description": "A simple dashboard for all your needs",
+  "main": "index.js",
+  "authors": [
+    "Felipe Martín <fmartingr@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/fmartingr/peepboard",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "peepboard/client/static/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "requirejs": "^2.2.0"
+  }
+}
