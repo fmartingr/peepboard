@@ -2,10 +2,14 @@ html
   head
     block head
       link(rel='stylesheet' href='/static/css')
+      link(rel="import" href="/static/polymers/widget-iframe.html")
+      link(rel="import" href="/static/polymers/dashboard-fullscreen.html")
   body
     block body
       include ./loading.jade
-      
+      block dashboards
+        div(dashboards)
+
     block scripts
-      script(src="/static/components/handlebars/handlebars.min.js")
+      script(src="/static/components/webcomponentsjs/webcomponents-lite.js")
       script(data-main='static/js/app' src="/static/components/requirejs/require.js")

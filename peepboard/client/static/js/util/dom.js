@@ -10,6 +10,13 @@ define(function () {
       var p = document.createElement('p');
       p.textContent = text;
       elem.appendChild(p);
+    },
+    addDashboard: function(dashboard) {
+      var el = document.createElement('dashboard-' + dashboard.type);
+      el.setAttribute('dashboardType', dashboard.type);
+      el.setAttribute('data', JSON.stringify(dashboard));
+      var container = document.querySelector('div[dashboards]');
+      container.appendChild(el);
     }
-  }
+  };
 });

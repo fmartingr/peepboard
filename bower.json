@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "handlebars": "^4.0.5",
-    "requirejs": "^2.2.0"
+    "requirejs": "^2.2.0",
+    "polymer": "^1.6.1"
   }
 }

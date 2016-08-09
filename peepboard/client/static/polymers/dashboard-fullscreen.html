@@ -1,0 +1,35 @@
+<link rel="import" href="/static/components/polymer/polymer.html">
+<dom-module id="dashboard-fullscreen">
+  <template>
+    <style type="text/css">
+
+    </style>
+    <div class="dashboard {{ dashboardType }}">
+
+    </div>
+  </template>
+
+  <script>
+   Polymer({
+       is: 'dashboard-fullscreen',
+       properties: {
+           dashboardType: String,
+           data: {
+               type: Object,
+               notify: true,
+               reflectToAttribute: true
+           },
+           widget: {
+               type: Object,
+               notify: true,
+               reflectToAttribute: true
+           }
+       },
+       attached: function() {
+           var el = document.createElement('widget-iframe');
+           el.url = 'https://www.saluspot.com';
+           this.appendChild(el)
+       }
+   });
+  </script>
+</dom-module>

@@ -77,8 +77,12 @@ var Server = (function(){
     console.info('[ Socket.io ] New client:', client.id);
     clients[client.id] = client;
 
-    client.on('dashboards', function(data) {
-      client.emit('dashboards', peepboard.dashboards);
+    client.on('get', function(items) {
+      console.info('[WS] IN: "get"', items);
+      if (items.indexOf('dashboards') !== -1)
+        client.emit('dashboards-list', peepboard.dashboards);
+      if (items.indexOf('widgets') !== -1)
+        client.emit('widgets-list', peepboard.widgets);
     });
 
     client.on('disconnect', function() {
