@@ -11,10 +11,16 @@ define(function () {
       p.textContent = text;
       elem.appendChild(p);
     },
-    addDashboard: function(dashboard) {
-      var el = document.createElement('dashboard-' + dashboard.type);
-      el.setAttribute('dashboardType', dashboard.type);
-      el.setAttribute('data', JSON.stringify(dashboard));
+    hideLoading: function() {
+      var el = document.querySelector('.peep-loading')
+      el.style.opacity = 0;
+    },
+    appendLoadingWidget: function(container, widgetID) {
+      var el = document.createElement('widget-loading');
+      el.setAttribute('widget-id', widgetID);
+      container.appendChild(el);
+    },
+    appendDashboard: function(el) {
       var container = document.querySelector('div[dashboards]');
       container.appendChild(el);
     }

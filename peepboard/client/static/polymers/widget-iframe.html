@@ -15,7 +15,14 @@
 
   <script>
    Polymer({
-
+       is: 'widget-iframe',
+       properties: {
+           data: Object,
+           url: String
+       },
+       attached: function() {
+           this.url = this.data.params.url;
+       }
    });
   </script>
 </dom-module>

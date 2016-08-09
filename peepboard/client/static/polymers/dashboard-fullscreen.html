@@ -1,12 +1,6 @@
 <link rel="import" href="/static/components/polymer/polymer.html">
 <dom-module id="dashboard-fullscreen">
   <template>
-    <style type="text/css">
-
-    </style>
-    <div class="dashboard {{ dashboardType }}">
-
-    </div>
   </template>
 
   <script>
@@ -14,21 +8,12 @@
        is: 'dashboard-fullscreen',
        properties: {
            dashboardType: String,
-           data: {
-               type: Object,
-               notify: true,
-               reflectToAttribute: true
-           },
-           widget: {
-               type: Object,
-               notify: true,
-               reflectToAttribute: true
-           }
+           data: Object,
+           widget: Object
        },
        attached: function() {
-           var el = document.createElement('widget-iframe');
-           el.url = 'https://www.saluspot.com';
-           this.appendChild(el)
+           $dom.appendLoadingWidget(this, this.data.params.widget);
+           $socket.getWidget(this.data.params.widget);
        }
    });
   </script>

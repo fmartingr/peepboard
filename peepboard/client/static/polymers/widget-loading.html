@@ -1,0 +1,18 @@
+<link rel="import" href="/static/components/polymer/polymer.html">
+<dom-module id="widget-loading">
+  <template>
+    Loading widget...
+  </template>
+
+  <script>
+   Polymer({
+       is: 'widget-loading',
+       properties: {
+           widgetId: String
+       },
+       attached: function() {
+           $widgets.linkElementToWidget(this.widgetId, this);
+       }
+   });
+  </script>
+</dom-module>

@@ -80,9 +80,12 @@ var Server = (function(){
     client.on('get', function(items) {
       console.info('[WS] IN: "get"', items);
       if (items.indexOf('dashboards') !== -1)
-        client.emit('dashboards-list', peepboard.dashboards);
-      if (items.indexOf('widgets') !== -1)
-        client.emit('widgets-list', peepboard.widgets);
+        client.emit('dashboards', peepboard.dashboards);
+    });
+
+    client.on('get-widget', function(widgetID) {
+      var widget = peepboard.readConf('widgets', widgetID);
+      client.emit('widget', {widgetID: widgetID, data: widget});
     });
 
     client.on('disconnect', function() {

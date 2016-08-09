@@ -4,7 +4,7 @@ var fs = require('fs');
 var Peepboard = (function() {
     var confPath = '',
         conf = {},
-        dashboards = [];
+        dashboards = {};
 
     var getConf = function(path) {
       if (path) this.confPath = path;
@@ -17,10 +17,10 @@ var Peepboard = (function() {
     };
 
     var getDashboards = function() {
-      this.dashboards = [];
+      this.dashboards = {};
       for (var dashboardKey of this.conf.dashboards) {
         var dashboard = this.readConf('dashboards', dashboardKey);
-        this.dashboards.push(dashboard);
+        this.dashboards[dashboardKey] = dashboard;
       }
     };
 

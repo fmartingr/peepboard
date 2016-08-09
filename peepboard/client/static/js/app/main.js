@@ -1,8 +1,10 @@
 define([
   'util/dom',
   'conn/socket',
-  'model/dashboard',
-  'model/widget'
-], function (dom, dashboard, widget, require) {
+  'model/widgets'
+], function (dom, socket, widgets, require) {
   // Main app loader
+  window.$socket = socket;
+  window.$widgets = widgets;
+  window.$dom = dom;
 });

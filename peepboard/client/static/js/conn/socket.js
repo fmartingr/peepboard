@@ -1,24 +1,37 @@
-define(['util/dom', 'socketio'], function(dom, io) {
+define(['model/widgets', 'model/dashboards', 'util/dom', 'socketio'], function($widgets, $dashboards, $dom, io) {
   var socket = io('//');
 
-  dom.appendText('loading-message', 'Connecting to server');
+  var getDashboards = function(socket) {
+    if (!socket) var socket = this.socket; // TODO fix this
+    socket.emit('get', ['dashboards']);
+  }
+
+  var getWidget = function(widgetID) {
+    this.socket.emit('get-widget', widgetID);
+  }
 
   socket.on('connect', function() {
     console.log('[WS] Connected!');
-    socket.emit('get', ['dashboards']);
-    dom.appendText('loading-message', 'Retrieving dashboards');
+    getDashboards(socket);
   });
 
-  socket.on('dashboards-list', function(dashboards) {
+  socket.on('dashboards', function(dashboards) {
     console.log('[WS] Received dashboards', dashboards);
-    dashboards.forEach(function(item) {
-      dom.addDashboard(item);
-    });
+    for (var dashID in dashboards) {
+      console.log(dashID, dashboards[dashID])
+      $dashboards.register(dashID, dashboards[dashID]);
+    }
+    $dom.hideLoading();
+ });
+
+  socket.on('widget', function(widget) {
+    console.info('[WS]', 'Received widget', widget.widgetID);
+    $widgets.register(widget);
   });
 
-  socket.on('widgets-list', function(widgets){
-    console.log('[WS] Received widgets', widgets);
-  });
-
-
+  return {
+    socket: socket,
+    getDashboards: getDashboards,
+    getWidget: getWidget
+  }
 });
