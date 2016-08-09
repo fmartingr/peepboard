@@ -11,7 +11,7 @@ var peepboard = require('./peepboard');
 var Server = (function(){
   var baseContext = {
     'brandingLogo': 'http://cdn.fmartingr.com.s3-eu-west-1.amazonaws.com/github/peepboard/peepboard-logo.png'
-  }
+  };
 
   var clients = [];
 
@@ -21,13 +21,13 @@ var Server = (function(){
   // Global context
   app.locals.branding = {
     logo: baseContext.brandingLogo
-  }
+  };
 
   // Log regquests
   app.use(function (req, res, next) {
-    var logFn = console.warn
+    var logFn = console.warn;
     if (res.statusCode >= 200 && res.statusCode < 300) {
-      logFn = console.info
+      logFn = console.info;
     }
     logFn('[', req.method, ']', req.path, res.statusCode);
     next();
@@ -48,17 +48,17 @@ var Server = (function(){
         res.status(500).end();
       }
     });
-  })
+  });
 
   // Compile own javascript
   app.get('/static/js', function(req, res) {
-    var js = function(file) { return __dirname + '/client/static/js/' + file; }
+    var js = function(file) { return __dirname + '/client/static/js/' + file; };
     var result = uglify.minify([
       js('observe.js')
     ]);
     res.header('Content-type', 'script/javascript');
     res.end(result.code);
-  })
+  });
 
   // Main view
   app.get('/', function (req, res) {
@@ -70,7 +70,7 @@ var Server = (function(){
     server.listen(port || 8000, function () {
       console.info('[ HTTP ] Listening on port ', (port || 8000));
     });
-  }
+  };
 
   // SocketIO
   io.on('connection', function (client) {
@@ -78,18 +78,18 @@ var Server = (function(){
     clients[client.id] = client;
 
     client.on('dashboards', function(data) {
-      client.emit('dashboards', peepboard.dashboards)
+      client.emit('dashboards', peepboard.dashboards);
     });
 
     client.on('disconnect', function() {
       console.info('[ Socket.io ] Client', client.id, 'disconnected.')
       delete clients[client.id];
-    })
+    });
   });
 
   return {
     'start': start
-  }
-})
+  };
+});
 
-module.exports = Server()
+module.exports = Server();
