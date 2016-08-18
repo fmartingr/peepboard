@@ -1,6 +1,7 @@
 define(function () {
-  var getElement = function(selector) { return document.querySelector(selector); }
+  var getElement = function(selector) { return document.querySelector(selector); };
   return {
+    getElement: getElement,
     text: function(name, text) {
       var elem = getElement('[data-text="' + name + '"]');
       elem.textContent = text;
@@ -12,7 +13,7 @@ define(function () {
       elem.appendChild(p);
     },
     hideLoading: function() {
-      var el = document.querySelector('.peep-loading')
+      var el = document.querySelector('.peep-loading');
       el.style.opacity = 0;
     },
     appendLoadingWidget: function(container, widgetID) {
@@ -23,6 +24,12 @@ define(function () {
     appendDashboard: function(el) {
       var container = document.querySelector('div[dashboards]');
       container.appendChild(el);
+    },
+    showDashboard: function(el) {
+      el.classList.add('peep-visible');
+    },
+    hideDashboard: function(el) {
+      el.classList.remove('peep-visible');
     }
   };
 });

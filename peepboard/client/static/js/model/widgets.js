@@ -7,7 +7,6 @@ define(['model/dashboards'], function($dashboards) {
     register: function(widget) {
       console.info('[WIDGET]', 'Registered:', widget.widgetID);
       this.widgets[widget.widgetID] = widget.data;
-      $dashboards.notifyWidget(this.widgets[widget.widgetID]);
       this.buildLoadingWidgets(widget.widgetID);
     },
     linkElementToWidget: function(widgetID, el) {
