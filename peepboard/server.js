@@ -74,11 +74,11 @@ var Server = (function(){
 
   // SocketIO
   io.on('connection', function (client) {
-    console.info('[ Socket.io ] New client:', client.id);
+    console.info('[ SocketIO ] New client:', client.id);
     clients[client.id] = client;
 
     client.on('get', function(items) {
-      console.info('[WS] IN: "get"', items);
+      console.info('[ SocketIO ] IN: "get"', items);
       if (items.indexOf('dashboards') !== -1)
         client.emit('dashboards', peepboard.dashboards);
     });
@@ -89,7 +89,7 @@ var Server = (function(){
     });
 
     client.on('disconnect', function() {
-      console.info('[ Socket.io ] Client', client.id, 'disconnected.')
+      console.info('[ SocketIO ] Client', client.id, 'disconnected.');
       delete clients[client.id];
     });
   });

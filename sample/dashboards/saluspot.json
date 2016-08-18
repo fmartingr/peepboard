@@ -1,6 +1,6 @@
 {
   "type": "fullscreen",
   "params": {
-    "widget": "google"
+    "widget": "saluspot-iframe"
   }
 }
