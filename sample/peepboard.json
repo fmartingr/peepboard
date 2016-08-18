@@ -1,5 +1,5 @@
 {
-    "base_path": "/Users/fmartingr/Developer/peepboard/sample",
+    "base_path": "sample",
     "port": 8080,
     "dashboards": ["saluspot"]
 }
